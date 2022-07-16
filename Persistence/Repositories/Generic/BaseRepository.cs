@@ -18,7 +18,8 @@ namespace Persistence.Repositories.Generic
 
         public async Task Add(TEntity entity)
         {
-             await _context.Set<TEntity>().AddAsync(entity);
+             _context.Set<TEntity>().Add(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(Guid id)
