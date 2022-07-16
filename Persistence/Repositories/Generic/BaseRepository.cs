@@ -45,8 +45,12 @@ namespace Persistence.Repositories.Generic
         public async Task Update(TEntity entity)
         {
              TEntity existing = await _context.Set<TEntity>().FindAsync(entity.Id);
-            _context.Entry(existing).CurrentValues.SetValues(entity);
-            await _context.SaveChangesAsync();
+             if (existing !=null)
+              {
+                  
+                _context.Entry(existing).CurrentValues.SetValues(entity);
+                await _context.SaveChangesAsync();
+              }
         }
     }
 }
