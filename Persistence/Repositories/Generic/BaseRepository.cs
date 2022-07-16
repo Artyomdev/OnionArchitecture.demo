@@ -24,10 +24,10 @@ namespace Persistence.Repositories.Generic
 
         public async Task Delete(Guid id)
         {
-            var willdeleteentity= await _context.Set<TEntity>().Where(p => p.Id == id).FirstOrDefaultAsync();
-            if (willdeleteentity !=null)
+            var entity= await _context.Set<TEntity>().Where(p => p.Id == id).FirstOrDefaultAsync();
+            if (entity !=null)
             {
-                _context.Set<TEntity>().Remove(willdeleteentity);
+                _context.Set<TEntity>().Remove(entity);
                 await _context.SaveChangesAsync();
             }
         }
